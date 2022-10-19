@@ -12,6 +12,8 @@
       <div><td><strong>DateReserve:</strong></td>{{appointment.dateReserve}}</div>
       <div><td><strong>DateAttention:</strong></td>{{appointment.dateAttention}}</div>
       <div><td><strong>Hour:</strong></td>{{appointment.hour}}</div>
+      <div><td><strong>Technician:</strong></td>{{appointment?.technician.names}} {{appointment?.technician.lastNames}}</div>
+      <div><td><strong>Status:</strong></td>{{appointment.status ? 'Pendiente': 'Finalizado'}}</div>
     </mat-card-content>
   </mat-card>
 </section>

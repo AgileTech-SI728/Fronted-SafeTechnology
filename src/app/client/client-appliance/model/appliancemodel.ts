@@ -4,4 +4,6 @@ export interface ApplianceModel {
   model: string;
   urlToImage: string;
   clientId:number;
+  technicianId: number;
+  status: boolean;
 }

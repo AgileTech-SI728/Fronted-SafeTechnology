@@ -4,7 +4,7 @@
   <mat-step>
     <ng-template matStepLabel>Appointment {{[i+1]}}</ng-template>
     <ng-template matStepContent>
-      <div *ngIf="clientData[i]"><td><strong>Address:</strong></td>{{clientData[i].address}}</div>
+      <div><td><strong>Address:</strong></td>{{appointment.client.address}}</div>
       <div><td><strong>Date Attention:</strong></td>{{appointment.dateAttention}}</div>
       <div><td><strong>Hour:</strong></td>{{appointment.hour}}</div>
     </ng-template>

@@ -53,6 +53,7 @@ export class ClientAppointmentComponent implements OnInit {
         applianceModel:this.appliancesModelData,
         selected:"",
         appointment:appointment,
+        technicianId: ""
       }
     });
 
@@ -63,8 +64,10 @@ export class ClientAppointmentComponent implements OnInit {
         appointment.dateReserve=result.appointment.dateReserve;
         appointment.dateAttention=result.appointment.dateAttention;
         appointment.hour=result.appointment.hour;
-        console.log(result.selected)
-        this.appointmentsService.create(appointment.clientId,appointment.applianceModelId,appointment).subscribe((response:any)=>{
+        appointment.technicianId = result.appointment.technicianId;
+        appointment.status = true;
+        
+        this.appointmentsService.create(appointment.clientId,appointment.applianceModelId, appointment.technicianId ,appointment).subscribe((response:any)=>{
           this.updateAppointmentsData();
           alert("Add appointment Successfully");
         });

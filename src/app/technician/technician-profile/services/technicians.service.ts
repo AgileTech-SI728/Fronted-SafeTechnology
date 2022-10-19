@@ -9,7 +9,7 @@ import {Technician} from "../model/technician";
 export class TechniciansService {
 
   // Endpoint
-  basePath = 'https://linerepair-apiservice.herokuapp.com/api/v1/technicians';
+  basePath = 'https://safetecnology-apiservice.herokuapp.com/api/v1/technicians';
 
   httpOptions = {
     headers: new HttpHeaders({

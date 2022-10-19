@@ -24,10 +24,18 @@
       Hour is <strong>required</strong>
     </mat-error>
   </mat-form-field>
+  <label for="">Appliance</label>
   <mat-form-field appearance="fill">
     <mat-label>Select an option</mat-label>
     <mat-select [(value)]="data.selected">
       <mat-option [value]="applianceModel.id" *ngFor="let applianceModel of data.applianceModel;">{{applianceModel.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <label for="">Technician</label>
+  <mat-form-field appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="technicianSelected">
+      <mat-option [value]="applianceModel.id" *ngFor="let applianceModel of technicians">{{applianceModel.names}}</mat-option>
     </mat-select>
   </mat-form-field>
 </form>

@@ -15,7 +15,7 @@ export class TechnicianRouteComponent implements OnInit {
   id: String;
 
  clientData: Client[];
-  appointmentData: Appointment[];
+  appointmentData: any[];
 
   constructor(private clientsService: ClientsService,
               private appointmentsService:AppointmentsService, private route: ActivatedRoute) {
@@ -30,7 +30,7 @@ export class TechnicianRouteComponent implements OnInit {
   updateRoutesData(){
     this.appointmentData=[];
     this.clientData=[];
-    this.appointmentsService.getAll().subscribe((response:any)=>{
+    /*this.appointmentsService.getAll().subscribe((response:any)=>{
       this.appointmentData=response;
       for(let appointmentaux of response ){
         this.clientsService.getById(appointmentaux.client.id).subscribe((response2:any)=>{
@@ -38,6 +38,10 @@ export class TechnicianRouteComponent implements OnInit {
           this.clientData.push(response2)
         })
       }
-    });
+    });*/
+
+    this.appointmentsService.getByTechnicianId(this.id).subscribe((response: any) => {
+      this.appointmentData=response;      
+    })
   }
 }

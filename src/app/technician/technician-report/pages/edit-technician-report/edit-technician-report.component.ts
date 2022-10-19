@@ -9,11 +9,16 @@ import {Report} from "../../model/report";
   styleUrls: ['./edit-technician-report.component.css']
 })
 export class EditTechnicianReportComponent{
+
+  statusSelected: boolean = false;
+
   editReportFormGroup= new FormGroup({
     observation: new FormControl('',[Validators.required]),
     diagnosis: new FormControl('',[Validators.required]),
     repairDescription: new FormControl('',[Validators.required]),
     date: new FormControl('',[Validators.required]),
+    status: new FormControl(''),
+    appointment: new FormControl("")
   });
 
 
@@ -21,11 +26,14 @@ export class EditTechnicianReportComponent{
     public dialogRef: MatDialogRef<EditTechnicianReportComponent>,
     @Inject(MAT_DIALOG_DATA) public  data: Report,
   ){
+    
     this.editReportFormGroup.setValue({
       observation:data.observation,
       diagnosis:data.diagnosis,
       repairDescription:data.repairDescription,
-      date:data.date
+      date:data.date,
+      status: data.appointment.status,
+      appointment: data.appointment
     })
   }
 

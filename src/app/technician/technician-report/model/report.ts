@@ -5,4 +5,6 @@ export interface Report {
   diagnosis:string;
   repairDescription:string;
   date:string;
+  status: boolean;
+  appointment?: any;
 }

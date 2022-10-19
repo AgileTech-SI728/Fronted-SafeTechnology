@@ -9,7 +9,7 @@ import {Appointment} from "../model/appointment";
 export class AppointmentsService {
 
   // Endpoint
-  basePath = 'https://linerepair-apiservice.herokuapp.com/api/v1/appointments';
+  basePath = 'https://safetecnology-apiservice.herokuapp.com/api/v1/appointments';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -33,8 +33,8 @@ export class AppointmentsService {
     return throwError(() => new Error('Something happened with request, please try again later'));
   }
 
-  create(clientId:any,applianceModelId:any,item: any): Observable<Appointment> {
-    return this.http.post<Appointment>(`${ this.basePath }/${ clientId }/${ applianceModelId }`, JSON.stringify(item), this.httpOptions)
+  create(clientId:any,applianceModelId:any, technicianId: any,item: any): Observable<Appointment> {
+    return this.http.post<Appointment>(`${ this.basePath }/${ clientId }/${technicianId}/${ applianceModelId }`, JSON.stringify(item), this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
@@ -49,10 +49,18 @@ export class AppointmentsService {
   }
 
   getByClientId(clientId: any):Observable<Appointment> {
-    return this.http.get<Appointment>(`${this.basePath}/${clientId}/appointments`, this.httpOptions)
+    return this.http.get<Appointment>(`${this.basePath}/${clientId}/clients/appointments`, this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));
+  }
+  
+  getByTechnicianId(technicianId: any): Observable<any> {
+    return this.http.get(`${this.basePath}/${technicianId}/technicians/appointments`)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
   }
 
   // Get All
@@ -78,6 +86,5 @@ export class AppointmentsService {
         retry(2),
         catchError(this.handleError));
   }
-
 
 }

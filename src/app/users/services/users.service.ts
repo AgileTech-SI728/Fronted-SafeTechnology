@@ -10,7 +10,7 @@ import {User} from "../model/user";
 export class UsersService {
 
   // Endpoint
-  basePath = 'https://linerepair-apiservice.herokuapp.com/api/v1/users';
+  basePath = 'https://safetecnology-apiservice.herokuapp.com/api/v1/users';
 
   httpOptions = {
     headers: new HttpHeaders({

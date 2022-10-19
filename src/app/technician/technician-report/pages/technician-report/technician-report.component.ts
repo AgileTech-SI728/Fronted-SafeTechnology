@@ -11,6 +11,7 @@ import {
   AddClientApplianceModelComponent
 } from "../../../../client/client-appliance/page/add-client-applianceModel/add-client-applianceModel.component";
 import {AddTechnicianReportComponent} from "../add-technician-report/add-technician-report.component";
+import { AppointmentsService } from 'src/app/client/client-appointment/services/appointments.service';
 
 @Component({
   selector: 'app-technician-report',
@@ -24,7 +25,7 @@ export class TechnicianReportComponent implements OnInit {
   reportsData: Report[];
 
   constructor(private technicianService: TechniciansService,
-              private reportsService:ReportsService, private route: ActivatedRoute,private dialog: MatDialog) {
+              private reportsService:ReportsService, private route: ActivatedRoute,private dialog: MatDialog, private appointmentService: AppointmentsService) {
     this.technicianData = [] as Technician[];
     this.reportsData = [] as Report[];
     this.id=this.route.snapshot.paramMap.get('id')!;
@@ -57,8 +58,9 @@ export class TechnicianReportComponent implements OnInit {
   }
   updateReportData(){
     this.reportsService.getAll().subscribe((response:any)=>{
-      this.reportsData=response;
       console.log(response);
+      
+      this.reportsData=response;
     });
   }
 
@@ -75,8 +77,28 @@ export class TechnicianReportComponent implements OnInit {
         data.date=result.get("date")?.value;
         this.reportsService.update(data.id,data).subscribe(response=>{
           this.updateReportData();
-          console.log("Updated");
+          
+          let data = {
+            id:result.value.appointment.id,
+            clientId:result.value.appointment.client.id,
+            dateReserve:result.value.appointment.dateReserve,
+            dateAttention:result.value.appointment.dateAttention,
+            hour:result.value.appointment.hour,
+            applianceModelId:result.value.appointment.applianceModel.id,
+            applianceModel:{
+              urlToImage:result.value.appointment.applianceModel.urlToImage,
+              name:result.value.appointment.applianceModel.name,
+              model:result.value.appointment.applianceModel.model
+            },
+            technicianId: result.value.appointment.technician.id,
+            status: result.get("status")?.value,
+          }
+          
+          /*this.appointmentService.update(result.value.appointment.id, data).subscribe(response => {
+            
+          })*/
         })
+
       }
     });
   }

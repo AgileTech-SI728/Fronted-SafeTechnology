@@ -22,6 +22,7 @@
         <h4 class="h4-config" *ngIf="reportsData[i]"> <td><strong>Diagnosis:</strong></td> {{reportsData[i].diagnosis}}</h4>
         <h4 class="h4-config" *ngIf="reportsData[i]"> <td><strong>Repair Description:</strong></td> {{reportsData[i].repairDescription}}</h4>
         <h4 class="h4-config" *ngIf="reportsData[i]"> <td><strong>Date:</strong></td> {{reportsData[i].date}}</h4>
+        <h4 class="h4-config" *ngIf="reportsData[i]"> <td><strong>Status:</strong></td> {{reportsData[i].appointment.status ? 'Pendiente' : 'Finalizado'}}</h4>
         <button  mat-raised-button color="accent" (click)="openDialogUpdate(reportsData[i])">Edit Item</button>
       </mat-expansion-panel>
 

@@ -11,7 +11,7 @@ import {ApplianceModel} from "../../../client/client-appliance/model/appliancemo
 export class ReportsService {
 
   // Endpoint
-  basePath = 'https://linerepair-apiservice.herokuapp.com/api/v1/reports';
+  basePath = 'https://safetecnology-apiservice.herokuapp.com/api/v1/reports';
 
   httpOptions = {
     headers: new HttpHeaders({
